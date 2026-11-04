@@ -79,7 +79,8 @@ npm test
 
 ---
 
-## 4. Documentación Técnica Adicional
+## 4. Documentación Técnica y Video Demo Oficial (Sección 07)
 
 * **[Documento Técnico Oficial (SNMP BER/ASN.1, Seguridad SSH Keychain y Cola Outbox)](./docs/DOCUMENTO_TECNICO_SNMP_SSH_OUTBOX.md)**
+* **[Video Demo End-to-End en Formato MP4 (`RF-01` a `RF-08`)](./docs/demo_video.mp4)**
 

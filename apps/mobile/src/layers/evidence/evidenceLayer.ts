@@ -10,6 +10,7 @@ import type {
   GeoCoordinates,
 } from '@network-suite/contracts';
 import { localStore } from '../store/localStore';
+import { outboxSyncManager } from '../sync/syncLayer';
 
 const BACKEND_BASE_URL = 'http://localhost:3000';
 
@@ -23,20 +24,22 @@ export async function scanEquipmentQrCode(qrCode: string): Promise<{
 }> {
   const cleanCode = qrCode.trim();
 
-  try {
-    const res = await fetch(
-      `${BACKEND_BASE_URL}/api/datasheets/${encodeURIComponent(cleanCode)}`
-    );
-    if (res.ok) {
-      const data = (await res.json()) as { datasheet: DeviceDatasheet };
-      localStore.upsertDatasheet(data.datasheet);
-      return {
-        datasheet: data.datasheet,
-        source: 'REMOTE_BACKEND',
-      };
+  if (outboxSyncManager.getState().isOnline) {
+    try {
+      const res = await fetch(
+        `${BACKEND_BASE_URL}/api/datasheets/${encodeURIComponent(cleanCode)}`
+      );
+      if (res.ok) {
+        const data = (await res.json()) as { datasheet: DeviceDatasheet };
+        localStore.upsertDatasheet(data.datasheet);
+        return {
+          datasheet: data.datasheet,
+          source: 'REMOTE_BACKEND',
+        };
+      }
+    } catch {
+      // Fallback to offline local store
     }
-  } catch {
-    // Fallback to offline local store
   }
 
   const cached = localStore.findDatasheetOffline(cleanCode);
