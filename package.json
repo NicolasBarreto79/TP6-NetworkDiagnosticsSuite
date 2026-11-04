@@ -1,0 +1,26 @@
+{
+  "name": "tp6-network-diagnostics-suite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TP6: Network Diagnostics Suite — Toolkit móvil offline-first de diagnóstico de infraestructura de telecomunicaciones (SNMP BER/ASN.1, SSH, mDNS/LAN, QR, GPS, PDF, WatermelonDB + Outbox)",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "test": "npm run test --workspaces --if-present",
+    "test:contracts": "npm --workspace=@network-suite/contracts run test",
+    "test:backend": "npm --workspace=@network-suite/backend run test",
+    "test:mobile": "npm --workspace=@network-suite/mobile run test",
+    "start:backend": "npm --workspace=@network-suite/backend run start",
+    "start:mobile": "npm --workspace=@network-suite/mobile run start",
+    "web": "npm --workspace=@network-suite/mobile run web",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "~5.8.2"
+  }
+}
+

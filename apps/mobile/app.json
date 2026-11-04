@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "Network Diagnostics Suite",
+    "slug": "tp6-network-diagnostics-suite",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "android": {
+      "package": "ar.edu.uader.fcyt.networkdiagnosticssuite",
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.ACCESS_WIFI_STATE",
+        "android.permission.CHANGE_WIFI_MULTICAST_STATE",
+        "android.permission.CAMERA",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "ios": {
+      "bundleIdentifier": "ar.edu.uader.fcyt.networkdiagnosticssuite",
+      "infoPlist": {
+        "NSLocalNetworkUsageDescription": "Network Diagnostics Suite necesita acceso a la red local para descubrir ONTs, routers, switches y antenas vía mDNS/Bonjour, SNMP (UDP/161) y SSH (TCP/22).",
+        "NSBonjourServices": [
+          "_ssh._tcp",
+          "_snmp._udp",
+          "_http._tcp"
+        ],
+        "NSCameraUsageDescription": "Se requiere cámara para escanear códigos QR/barras de equipos y tomar fotografías de evidencia de instalación.",
+        "NSLocationWhenInUseUsageDescription": "Se requiere ubicación GPS de alta precisión para georreferenciar las fotografías y el reporte PDF de instalación."
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
+
